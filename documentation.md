@@ -38,3 +38,4 @@ root.mainloop()
 ```
 The first part is just creating a window, the second part is important for the label. We can no add text to our window.
 ![label_1](/assets/label_1.png)  
+There are different ways to place the text by using `place()` or `grid()`.
