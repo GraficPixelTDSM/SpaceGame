@@ -59,4 +59,4 @@ img = Label(root, image=image)
 img.pack()
 root.mainloop()
 ```
-There are different ways to place the text by using `place()` or `grid()`.
+![label_image.png](/assets/label_image.png)  
