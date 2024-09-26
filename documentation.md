@@ -36,4 +36,5 @@ text2 = Label(root, text="- Maya Angelou")
 text2.pack()
 root.mainloop()
 ```
-The first part is just creating a window, the second part is important for the label. 
+The first part is just creating a window, the second part is important for the label. We can no add text to our window.
+![label_1](/assets/label_1.png)  
