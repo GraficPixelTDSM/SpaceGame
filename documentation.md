@@ -18,3 +18,22 @@ root.geometry("400x300+50+50")  # width x height + x + y
 ```
 ![custom_simple_window](/assets/custom_simple_window.png)    
 title etits the window title. With configure we can change the background color. With minsize and maxsize we can define the minimal and maximal size of the window. With geometry we can change the initial windowsize.
+
+### Create a Label
+We can create a Label with the following code:
+```
+from tkinter import *
+
+root = Tk()
+root.title("Tk Example")
+root.minsize(200, 200)  # width, height
+root.geometry("300x300+50+50")
+
+# Create Label in our window
+text = Label(root, text="Nothing will work unless you do.")
+text.pack()
+text2 = Label(root, text="- Maya Angelou")
+text2.pack()
+root.mainloop()
+```
+The first part is just creating a window, the second part is important for the label. 
