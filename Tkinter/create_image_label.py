@@ -11,7 +11,7 @@ text.pack()
 text2 = Label(root, text="- Maya Angelou")
 text2.pack()
 
-image = PhotoImage(file="meme_1.png")
+image = PhotoImage(file="meme.gif")
 img = Label(root, image=image)
 img.pack()
 root.mainloop()
