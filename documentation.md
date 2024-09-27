@@ -72,3 +72,27 @@ root.mainloop()
 ```
 
 ![label_image.png](/assets/label_image.png)  
+
+## Layout Design
+
+### Frame Widget
+
+To organize the different labels and images in our window we can use frames. Frames are like mini-windows or boxes within our main-window. To do so we can use the following code:
+
+```py
+from tkinter import *
+
+root = Tk()  # create root window
+root.title("Frame Example")
+root.config(bg="skyblue")
+
+# Create Frame widget
+left_frame = Frame(root, width=200, height=400)
+left_frame.grid(row=0, column=0, padx=10, pady=5)
+right_frame = Frame(root, width=400, height=400)
+right_frame.grid(row=0, column=1, padx=10, pady=5)
+root.mainloop()
+```
+
+First we give a name to our frame (here left_frame). Then we define the size of this frame, by using `Frame()`. Then we define the position of the frame by using `frame_name.grid()`. `row` tells us where the frame will be placed from the top and `column` tells us where from the left, starting with 0. `padx` and `pady` we define the space between the different frames.  
+![frame_design](/assets/frame_design.png)  
