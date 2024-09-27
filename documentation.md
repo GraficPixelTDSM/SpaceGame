@@ -96,3 +96,16 @@ root.mainloop()
 
 First we give a name to our frame (here left_frame). Then we define the size of this frame, by using `Frame()`. Then we define the position of the frame by using `frame_name.grid()`. `row` tells us where the frame will be placed from the top and `column` tells us where from the left, starting with 0. `padx` and `pady` we define the space between the different frames.  
 ![frame_design](/assets/frame_design.png)  
+By adding following lines we can add frames in frames to further divide the frames and add labels to specific frames:
+
+```py
+# Create frame within left_frame
+tool_bar = Frame(left_frame, width=180, height=185, bg="purple")
+tool_bar.grid(row=2, column=0, padx=5, pady=5)
+
+# Create label above the tool_bar
+Label(left_frame, text="Example Text").grid(row=1, column=0, padx=5, pady=5)
+```
+
+We are adding the frame 'tool_bar' to the frame 'left_frame' by defining it in the first parameter of the `Frame()`-function. We can also tell a label to be in the 'left_frame' and then tell it where it should be on the grid, by using `.grid()`.
+![frame_in_frame](/assets/frame_in_frame.png)  
