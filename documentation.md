@@ -119,3 +119,34 @@ Some other, commonly used, parameters of the `Frame()`-function are:
 
 Simple_GUI.py is a good example how a simple gui can look like.
 ![basic_gui_new](/assets/basic_giu.png)  
+
+## The Button
+
+By using the following code we can add buttons and edit theyr functionality:
+
+```py
+from tkinter import *
+
+root = Tk()  # create parent window
+
+# use Button and Label widgets to create a simple TV remote
+turn_on = Button(root, text="ON")
+turn_on.pack()
+
+turn_off = Button(root, text="OFF", command=root.quit)
+turn_off.pack()
+
+volume = Label(root, text="VOLUME")
+volume.pack()
+
+vol_up = Button(root, text="+")
+vol_up.pack()
+
+vol_down = Button(root, text="-")
+vol_down.pack()
+
+root.mainloop()
+```
+
+We first give a name to our button. Then we define the parameters of the button. These can be the frame, where the button should be located, its text and the command, that should be executed, when the button is pressed. The command `root.quit` closes the root-window.  
+![simple_button](/assets/simple_button.png)  
