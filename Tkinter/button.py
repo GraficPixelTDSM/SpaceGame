@@ -26,7 +26,10 @@ def turnOnTV():
     original_image.pack()
 
 
-turn_on = Button(root, text="ON", command=turnOnTV)
+# select image for on button
+on_button_photo = PhotoImage(file="onButton.gif")
+photo = on_button_photo.subsample(10, 10)
+turn_on = Button(root, image=photo, command=turnOnTV)
 turn_on.pack()
 
 turn_off = Button(root, text="OFF", command=root.quit)
