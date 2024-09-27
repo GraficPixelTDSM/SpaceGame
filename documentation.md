@@ -109,3 +109,8 @@ Label(left_frame, text="Example Text").grid(row=1, column=0, padx=5, pady=5)
 
 We are adding the frame 'tool_bar' to the frame 'left_frame' by defining it in the first parameter of the `Frame()`-function. We can also tell a label to be in the 'left_frame' and then tell it where it should be on the grid, by using `.grid()`.
 ![frame_in_frame](/assets/frame_in_frame.png)  
+Some other, commonly used, parameters of the `Frame()`-function are:  
+
+- `bg` -- change background color
+- `bd` -- change border width
+- `cursor` -- change the cursor type when hovering over a frame (`arrow`, `dot`, `circle`)
