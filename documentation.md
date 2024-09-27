@@ -114,3 +114,8 @@ Some other, commonly used, parameters of the `Frame()`-function are:
 - `bg` -- change background color
 - `bd` -- change border width
 - `cursor` -- change the cursor type when hovering over a frame (`arrow`, `dot`, `circle`)
+
+### Summary
+
+Simple_GUI.py is a good example how a simple gui can look like.
+![basic_gui_new](/assets/basic_giu.png)  
