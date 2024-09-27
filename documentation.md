@@ -109,6 +109,9 @@ Label(left_frame, text="Example Text").grid(row=1, column=0, padx=5, pady=5)
 
 We are adding the frame 'tool_bar' to the frame 'left_frame' by defining it in the first parameter of the `Frame()`-function. We can also tell a label to be in the 'left_frame' and then tell it where it should be on the grid, by using `.grid()`.
 ![frame_in_frame](/assets/frame_in_frame.png)  
+
+### Useful Parameters - Frame
+
 Some other, commonly used, parameters of the `Frame()`-function are:  
 
 - `bg` -- change background color
@@ -196,3 +199,24 @@ vol_down.pack()
 ```
 
 `volumeUp()` and `volumeDown()` are currently onyl printing some text in the terminal. `turnOnTV()` creates a new window with the 'meme.gif' as label. By pressing the 'OFF'-Button and activating the `root.quit`-command we close all the windows, because the image-windows have `window = TopLevel(root)`. That means by closing root we also close the windows with this attribute.  
+
+### Useful Parameters - Button
+
+- `activebackground` & `activeforeground` -- sets the background or foreground colors when the cursor is over the button
+- `bd` -- sets the border width of buttons in pixels
+- `bg` & `fg` -- sets the background and foreground colors
+- `font` -- chooses the text font of the button
+- `height` & `width` -- sets height and width sizes
+- `image` -- uses an image on the button rather than text
+
+### Image On Button
+
+By using the following code we can add an image to our button:
+
+```py
+# select image for on button
+on_button_photo = PhotoImage(file="onButton.gif")
+photo = on_button_photo.subsample(10,10)
+turn_on = Button(root, image=photo, command=turnOnTV)
+turn_on.pack()
+```
