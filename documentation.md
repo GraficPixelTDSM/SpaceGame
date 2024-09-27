@@ -148,5 +148,5 @@ vol_down.pack()
 root.mainloop()
 ```
 
-We first give a name to our button. Then we define the parameters of the button. These can be the frame, where the button should be located, its text and the command, that should be executed, when the button is pressed. The command `root.quit` closes the root-window.  
+We first give a name to our button. Then we define the parameters of the button. These can be the frame, where the button should be located, its text and the command, that should be executed, when the button is pressed. The command `root.quit` closes the root-window. Using the `state=DISABLED`-parameter we can disable buttons, that we currently don't use.  
 ![simple_button](/assets/simple_button.png)  
