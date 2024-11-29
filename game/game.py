@@ -30,7 +30,7 @@ def set_mines(num, w, h, field):
     print("Mined field generated")
     # field_print(field)
     for j in range(h):
-        check = check + int(field[j].count([True, 0]))
+        check = check + int(field[j].count([True, 0, False]))
     print("Minecheck: " + str(check) + " Mines")
     return field
 
