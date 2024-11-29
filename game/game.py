@@ -8,10 +8,9 @@ HEIGHT9 = 9
 
 def generate_field(w, h):
     """generating blank field, True/False = mine, number = mines around this field"""
-    print("Empty Field:\n")
-    field_print(generated)
-    print("\n-------------------------")
     generated = [[[(False), 0] for i in range(w)] for i in range(h)]
+    print("Empty field generated")
+    # field_print(generated)
     return generated
 
 
@@ -27,8 +26,8 @@ def set_mines(num, w, h, field):
             b = randint(0, h - 1)
         print(b, a)
         field[b][a][0] = True
-    print("-------------------------\nMined Field:")
-    field_print(field)
+    print("Mined field generated")
+    # field_print(field)
     for j in range(h):
         check = check + int(field[j].count([True, 0]))
     print("Minecheck: " + str(check) + " Mines")
@@ -47,7 +46,8 @@ def mine_detection(h, w, field):
                     if field[ni][nj][0] is True:
                         x += 1
             field[i][j][1] = x
-    field_print(field)
+    print("Detected field generated")
+    # field_print(field)
     return field
 
 
