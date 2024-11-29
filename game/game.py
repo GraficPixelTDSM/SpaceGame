@@ -6,12 +6,12 @@ HEIGHT9 = 9
 """We define values for game width, height and number of mines"""
 
 
-def generate_field(x, y):
+def generate_field(w, h):
     """generating blank field, True/False = mine, number = mines around this field"""
-    generated = [[[(False), 0] for i in range(x)] for i in range(y)]
     print("Empty Field:\n")
     field_print(generated)
     print("\n-------------------------")
+    generated = [[[(False), 0] for i in range(w)] for i in range(h)]
     return generated
 
 
@@ -60,3 +60,4 @@ def field_print(inp):
 gfield = generate_field(WIDTH10, HEIGHT9)
 minefield = set_mines(MINES10, WIDTH10, HEIGHT9, gfield)
 playfield = mine_detection(HEIGHT9, WIDTH10, minefield)
+vis_field = generate_visible_field(WIDTH10, HEIGHT9)
