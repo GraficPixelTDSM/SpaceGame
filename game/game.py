@@ -3,7 +3,6 @@ from random import randint  # We import randint to generate random numbers
 MINES10 = 10
 WIDTH10 = 10
 HEIGHT9 = 9
-
 """We define values for game width, height and number of mines"""
 
 
@@ -58,5 +57,6 @@ def field_print(inp):
         print(inp[i])
 
 
-field = generate_field(WIDTH10, HEIGHT9)
-minefield = set_mines(MINES)
+gfield = generate_field(WIDTH10, HEIGHT9)
+minefield = set_mines(MINES10, WIDTH10, HEIGHT9, gfield)
+playfield = mine_detection(HEIGHT9, WIDTH10, minefield)
