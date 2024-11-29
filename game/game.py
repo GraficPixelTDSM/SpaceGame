@@ -30,6 +30,21 @@ def set_mines(num):
     print(check)
     return field
 
+def mine_detection():
+    """we detect the place of the block and detect if its on top bot etc."""
+    for i in range(HEIGHT9):
+        for j in range(WIDTH10):
+            if i != 0:
+                print("not top")
+            if i != HEIGHT9 - 1:
+                print("not bot")
+            if j != 0:
+                print("not left")
+            if j != WIDTH10 - 1:
+                print("not right")
+
+    print("1")
+
 
 field = generate_field(WIDTH10, HEIGHT9)
 minefield = set_mines(MINES)
