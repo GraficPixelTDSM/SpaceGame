@@ -14,20 +14,26 @@ def generate_field(x, y):
     return generated
 
 
-def set_mines(num):
+def set_mines(num, w, h, field):
     """places mines on the field by changing False to True"""
     check = 0
+    print("Mine Locations:")
     for i in range(num):
-        a = randint(0, WIDTH10 - 1)
-        b = randint(0, HEIGHT9 - 1)
+        a = randint(0, w - 1)
+        b = randint(0, h - 1)
         while field[b][a][0] is True:
-            a = randint(0, WIDTH10 - 1)
-            b = randint(0, HEIGHT9 - 1)
-        print(a, b)
+            a = randint(0, w - 1)
+            b = randint(0, h - 1)
+        print(b, a)
         field[b][a][0] = True
-    print(field)
-    for j in range(10):
+    print("-------------------------\nMined Field:")
+    field_print(field)
+    for j in range(h):
         check = check + int(field[j].count([True, 0]))
+    print("Minecheck: " + str(check) + " Mines")
+    return field
+
+
 def mine_detection(h, w, field):
     """Detects the number of mines around each field."""
     checklist = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
