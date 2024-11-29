@@ -28,7 +28,19 @@ def set_mines(num):
     print(field)
     for j in range(10):
         check = check + int(field[j].count([True, 0]))
-    print(check)
+def mine_detection(h, w, field):
+    """Detects the number of mines around each field."""
+    checklist = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+    for i in range(h):
+        for j in range(w):
+            x = 0
+            for di, dj in checklist:
+                ni, nj = i + di, j + dj
+                if 0 <= ni < h and 0 <= nj < w:
+                    if field[ni][nj][0] is True:
+                        x += 1
+            field[i][j][1] = x
+    field_print(field)
     return field
 
 
