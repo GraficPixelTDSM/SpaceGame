@@ -1,6 +1,6 @@
 from random import randint  # We import randint to generate random numbers
 
-MINES = 10
+MINES10 = 10
 WIDTH10 = 10
 HEIGHT9 = 9
 
