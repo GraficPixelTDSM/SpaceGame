@@ -1,9 +1,10 @@
 from random import randint '''We import randint to generate random numbers'''
 
 MINES = 10
-WIDTH = 10
-HEIGHT = 10
-'''We define values for game width, height and number of mines'''
+WIDTH10 = 10
+HEIGHT9 = 9
+
+"""We define values for game width, height and number of mines"""
 
 
 def generate_field(x, y):
