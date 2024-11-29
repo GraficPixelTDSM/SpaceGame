@@ -50,20 +50,10 @@ def mine_detection(h, w, field):
     return field
 
 
-def mine_detection():
-    """we detect the place of the block and detect if its on top bot etc."""
+def field_print(inp):
+    """prints readable fields"""
     for i in range(HEIGHT9):
-        for j in range(WIDTH10):
-            if i != 0:
-                print("not top")
-            if i != HEIGHT9 - 1:
-                print("not bot")
-            if j != 0:
-                print("not left")
-            if j != WIDTH10 - 1:
-                print("not right")
-
-    print("1")
+        print(inp[i])
 
 
 field = generate_field(WIDTH10, HEIGHT9)
