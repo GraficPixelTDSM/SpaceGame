@@ -31,5 +31,5 @@ def set_mines(num):
     return field
 
 
-field = generate_field(width, height)
-minefield = set_mines(mines)
+field = generate_field(WIDTH10, HEIGHT9)
+minefield = set_mines(MINES)
