@@ -17,15 +17,16 @@ def generate_field(w, h):
 def set_mines(num, w, h, field):
     """places mines on the field by changing False to True"""
     check = 0
-    print("Mine Locations:")
+    mines_list = []
     for i in range(num):
         a = randint(0, w - 1)
         b = randint(0, h - 1)
         while field[b][a][0] is True:
             a = randint(0, w - 1)
             b = randint(0, h - 1)
-        print(b, a)
+        mines_list.append(f"{b};{a}")
         field[b][a][0] = True
+    print(f"Mine Locations: {mines_list}")
     print("Mined field generated")
     # field_print(field)
     for j in range(h):
