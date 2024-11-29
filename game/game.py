@@ -7,8 +7,8 @@ HEIGHT10 = 10
 
 
 def generate_field(w, h):
-    """generating blank field, True/False = mine, number = mines around this field"""
-    generated = [[[(False), 0] for i in range(w)] for i in range(h)]
+    """generating field, True/False = mine, number = mines around this field, True/False open?"""
+    generated = [[[False, 0, False] for i in range(w)] for i in range(h)]
     print("Empty field generated")
     # field_print(generated)
     return generated
