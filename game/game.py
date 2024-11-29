@@ -58,6 +58,21 @@ def field_print(inp):
         print(inp[i])
 
 
+def create_vis_field(h, w):
+    field = [[] for i in range(h)]
+    numbers = ["◻", "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧"]
+    for j in range(h):
+        for k in range(w):
+            if playfield[j][k][2] is False:
+                field[j].append("■")
+            if playfield[j][k][2] is True:
+                if playfield[j][k][0] is False:
+                    field[j].append(numbers[playfield[j][k][1]])
+                if playfield[j][k][0] is True:
+                    field[j].append("◈")
+    return field
+
+
 gfield = generate_field(WIDTH10, HEIGHT10)
 minefield = set_mines(MINES10, WIDTH10, HEIGHT10, gfield)
 playfield = mine_detection(HEIGHT10, WIDTH10, minefield)
