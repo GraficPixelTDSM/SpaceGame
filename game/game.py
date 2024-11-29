@@ -1,4 +1,4 @@
-from random import randint '''We import randint to generate random numbers'''
+from random import randint  # We import randint to generate random numbers
 
 MINES = 10
 WIDTH10 = 10
@@ -15,6 +15,7 @@ def generate_field(x, y):
 
 
 def set_mines(num):
+    """places mines on the field by changing False to True"""
     check = 0
     for i in range(num):
         a = randint(0, WIDTH10 - 1)
@@ -29,6 +30,7 @@ def set_mines(num):
         check = check + int(field[j].count([True, 0]))
     print(check)
     return field
+
 
 def mine_detection():
     """we detect the place of the block and detect if its on top bot etc."""
