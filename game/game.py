@@ -92,8 +92,20 @@ minefield = set_mines(MINES10, WIDTH10, HEIGHT10, gfield)
 playfield = mine_detection(HEIGHT10, WIDTH10, minefield)
 field_print(create_vis_field(HEIGHT10, WIDTH10))
 
-playfield[int(input("y"))][int(input("x"))][2] = True
 
-field_print(create_vis_field(HEIGHT10, WIDTH10))
-game_over, loss = check_mine_hit(HEIGHT10, playfield)
-print(game_over, loss)
+def game_loop(field, LOSS):
+    while LOSS is False:
+        x, y = int(input("x")), int(input("y"))
+        field[y][x][2] = True
+        if field[y][x][0] is True:
+            LOSS = True
+            field_print(create_vis_field(HEIGHT10, WIDTH10))
+            return LOSS
+            break
+        if field[y][x][1] == 0 and field[y][x][1] is False:
+            zero_field(y, x, field)
+        field_print(create_vis_field(HEIGHT10, WIDTH10))
+
+
+LOSS = game_loop(playfield, LOSS)
+print(LOSS)
