@@ -3,6 +3,9 @@ from random import randint  # We import randint to generate random numbers
 MINES10 = 10
 WIDTH10 = 10
 HEIGHT10 = 10
+
+game_over = False
+loss = False
 """We define values for game width, height and number of mines"""
 
 
@@ -46,7 +49,8 @@ def mine_detection(h, w, field):
                 if 0 <= ni < h and 0 <= nj < w:
                     if field[ni][nj][0] is True:
                         x += 1
-            field[i][j][1] = x
+            if field[i][j][0] is False:
+                field[i][j][1] = x
     print("Detected field generated")
     # field_print(field)
     return field
@@ -74,7 +78,18 @@ def create_vis_field(h, w):
     return field
 
 
+def check_mine_hit(h, field):
+    """Checks if a mine has been hit and if so sets game over = True and loss = True"""
+    g, l = False, False
+    for i in range(h):
+        if [True, 0, True] in field[i]:
+            g, l = True, True
+    return g, l
+
+
 gfield = generate_field(WIDTH10, HEIGHT10)
 minefield = set_mines(MINES10, WIDTH10, HEIGHT10, gfield)
 playfield = mine_detection(HEIGHT10, WIDTH10, minefield)
 field_print(create_vis_field(HEIGHT10, WIDTH10))
+game_over, loss = check_mine_hit(HEIGHT10, playfield)
+print(game_over, loss)
