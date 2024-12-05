@@ -29,7 +29,7 @@ def set_mines(num, w, h, field):
             b = randint(0, h - 1)
         mines_list.append(f"{b};{a}")
         field[b][a][0] = True
-    print(f"Mine Locations: {mines_list}")
+    # print(f"Mine Locations: {mines_list}")
     print("Mined field generated")
     # field_print(field)
     for j in range(h):
@@ -52,7 +52,7 @@ def mine_detection(h, w, field):
             if field[i][j][0] is False:
                 field[i][j][1] = x
     print("Detected field generated")
-    # field_print(field)
+    field_print(field)
     return field
 
 
@@ -63,7 +63,7 @@ def field_print(inp):
 
 
 def create_vis_field(h, w):
-    '''Changes numbers, mines and covered fields with symbols'''
+    """Changes numbers, mines and covered fields with symbols"""
     field = [[] for i in range(h)]
     numbers = ["◻", "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧"]
     for j in range(h):
@@ -90,6 +90,10 @@ def check_mine_hit(h, field):
 gfield = generate_field(WIDTH10, HEIGHT10)
 minefield = set_mines(MINES10, WIDTH10, HEIGHT10, gfield)
 playfield = mine_detection(HEIGHT10, WIDTH10, minefield)
+field_print(create_vis_field(HEIGHT10, WIDTH10))
+
+playfield[int(input("y"))][int(input("x"))][2] = True
+
 field_print(create_vis_field(HEIGHT10, WIDTH10))
 game_over, loss = check_mine_hit(HEIGHT10, playfield)
 print(game_over, loss)
