@@ -4,8 +4,7 @@ MINES10 = 10
 WIDTH10 = 10
 HEIGHT10 = 10
 
-game_over = False
-loss = False
+LOSS = False
 """We define values for game width, height and number of mines"""
 
 
