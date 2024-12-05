@@ -59,6 +59,7 @@ def field_print(inp):
 
 
 def create_vis_field(h, w):
+    '''Changes numbers, mines and covered fields with symbols'''
     field = [[] for i in range(h)]
     numbers = ["◻", "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧"]
     for j in range(h):
