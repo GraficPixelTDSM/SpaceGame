@@ -77,13 +77,9 @@ def create_vis_field(h, w):
     return field
 
 
-def check_mine_hit(h, field):
-    """Checks if a mine has been hit and if so sets game over = True and loss = True"""
-    g, l = False, False
-    for i in range(h):
-        if [True, 0, True] in field[i]:
-            g, l = True, True
-    return g, l
+def zero_field(h, w, field):
+    """open all fields around a 0-field and repeat for new 0-fields"""
+    print()
 
 
 gfield = generate_field(WIDTH10, HEIGHT10)
