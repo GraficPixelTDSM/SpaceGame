@@ -51,7 +51,7 @@ def mine_detection(h, w, field):
             if field[i][j][0] is False:
                 field[i][j][1] = x
     print("Detected field generated")
-    field_print(field)
+    # field_print(field)
     return field
 
 
@@ -79,7 +79,17 @@ def create_vis_field(h, w):
 
 def zero_field(h, w, field):
     """open all fields around a 0-field and repeat for new 0-fields"""
-    print()
+
+def input_check(var, value):
+    inp = input(f"{var}: ")
+    while True:
+        try:
+            if 0 <= int(inp) < value:
+                return int(inp)
+            else:
+                inp = input(f"{var}: ")
+        except:
+            inp = input(f"{var}: ")
 
 
 gfield = generate_field(WIDTH10, HEIGHT10)
@@ -88,14 +98,17 @@ playfield = mine_detection(HEIGHT10, WIDTH10, minefield)
 field_print(create_vis_field(HEIGHT10, WIDTH10))
 
 
-def game_loop(field, LOSS):
-    while LOSS is False:
-        x, y = int(input("x")), int(input("y"))
+def game_loop(field, l):
+    """main game-loop"""
+    while l is False:
+        zero_check = []
+        x, y = input_check("x", WIDTH10), input_check("y", HEIGHT10)
         field[y][x][2] = True
+        # field_print(field)
         if field[y][x][0] is True:
-            LOSS = True
+            l = True
             field_print(create_vis_field(HEIGHT10, WIDTH10))
-            return LOSS
+            return l
             break
         if field[y][x][1] == 0 and field[y][x][1] is False:
             zero_field(y, x, field)
