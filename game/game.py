@@ -77,8 +77,20 @@ def create_vis_field(h, w):
     return field
 
 
-def zero_field(h, w, field):
+def zero_field(h, w, field, list):
     """open all fields around a 0-field and repeat for new 0-fields"""
+    checklist = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+    for i, j in checklist:
+        if 0 <= j + h < HEIGHT10 and 0 <= i + w < WIDTH10:
+            # field_print(field)
+            if field[j + h][i + w][2] is False:
+                field[j + h][i + w][2] = True
+                if field[j + h][i + w][1] == 0:
+                    list.append([j + h, i + w])
+    # field_print(field)
+
+    return list
+
 
 def input_check(var, value):
     inp = input(f"{var}: ")
@@ -110,8 +122,14 @@ def game_loop(field, l):
             field_print(create_vis_field(HEIGHT10, WIDTH10))
             return l
             break
-        if field[y][x][1] == 0 and field[y][x][1] is False:
-            zero_field(y, x, field)
+        if field[y][x][1] == 0 and field[y][x][0] is False:
+            zero_check.append([y, x])
+        while len(zero_check) > 0:
+            zero_check = zero_field(
+                zero_check[0][0], zero_check[0][1], field, zero_check
+            )
+            zero_check.pop(0)
+
         field_print(create_vis_field(HEIGHT10, WIDTH10))
 
 
