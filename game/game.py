@@ -104,6 +104,15 @@ def input_check(var, value):
             inp = input(f"{var}: ")
 
 
+def count_open_fields(field):
+    x = 0
+    for i in range(HEIGHT10):
+        for j in range(WIDTH10):
+            if field[i][j][2] is True:
+                x += 1
+    return x
+
+
 gfield = generate_field(WIDTH10, HEIGHT10)
 minefield = set_mines(MINES10, WIDTH10, HEIGHT10, gfield)
 playfield = mine_detection(HEIGHT10, WIDTH10, minefield)
@@ -119,9 +128,7 @@ def game_loop(field, l):
         # field_print(field)
         if field[y][x][0] is True:
             l = True
-            field_print(create_vis_field(HEIGHT10, WIDTH10))
             return l
-            break
         if field[y][x][1] == 0 and field[y][x][0] is False:
             zero_check.append([y, x])
         while len(zero_check) > 0:
@@ -129,9 +136,13 @@ def game_loop(field, l):
                 zero_check[0][0], zero_check[0][1], field, zero_check
             )
             zero_check.pop(0)
-
+        if count_open_fields(field) == (HEIGHT10 * WIDTH10 - MINES10):
+            return l
         field_print(create_vis_field(HEIGHT10, WIDTH10))
 
 
 LOSS = game_loop(playfield, LOSS)
-print(LOSS)
+if LOSS is True:
+    print("you hit a mine and lose the game")
+if LOSS is False:
+    print("you don't hit a mine and win the game")
