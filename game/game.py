@@ -1,4 +1,6 @@
 from random import randint  # We import randint to generate random numbers
+import string  # Für die Buchstaben a-z
+
 
 MINES10 = 10
 WIDTH10 = 10
@@ -56,9 +58,15 @@ def mine_detection(h, w, field):
 
 
 def field_print(inp):
-    """prints readable fields"""
-    for i in range(HEIGHT10):
-        print(inp[i])
+    """Prints the field with row labels (a, b, ...) and column numbers (1, 2, ...)."""
+    # Zahlen als Kopfzeile
+    header = "   " + " ".join(str(i + 1) for i in range(len(inp[0])))
+    print(header)
+
+    # Spielfeld mit Buchstaben links ausgeben
+    for index, row in enumerate(inp):
+        row_label = string.ascii_lowercase[index]  # Buchstaben a, b, c, ...
+        print(f"{row_label}  " + " ".join(row))
 
 
 def create_vis_field(h, w):
@@ -74,6 +82,7 @@ def create_vis_field(h, w):
                     field[j].append(numbers[playfield[j][k][1]])
                 if playfield[j][k][0] is True:
                     field[j].append("◈")
+
     return field
 
 
