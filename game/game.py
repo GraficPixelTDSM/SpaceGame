@@ -143,10 +143,79 @@ def count_open_fields(field):
     return x
 
 
-gfield = generate_field(WIDTH10, HEIGHT10)
-minefield = set_mines(MINES10, WIDTH10, HEIGHT10, gfield)
-playfield = mine_detection(HEIGHT10, WIDTH10, minefield)
-field_print(create_vis_field(HEIGHT10, WIDTH10))
+def input_check(
+    message, req, length_min, length_max
+):  # req can be "n", "a", "an", "anf" (numeric, alphabetic, alphanumeric, alphanumeric force -> at least one alpha and numeric); length is the required length, can also be infinite ("i")
+    if req == "n":
+        while True:
+            inp = input(message)
+            if inp.isnumeric() and check_inp_size(inp, length_min, length_max):
+                return inp
+    elif req == "a":
+        while True:
+            inp = input(message)
+            if inp.isalpha() and check_inp_size(inp, length_min, length_max):
+                return inp
+    elif req == "an":
+        while True:
+            inp = input(message)
+            if inp.isalnum() and check_inp_size(inp, length_min, length_max):
+                return inp
+    elif req == "anf":
+        while True:
+            inp = input(message)
+            if (
+                inp.isalnum()
+                and check_inp_size(inp, length_min, length_max)
+                and not (inp.isnumeric() or inp.isalpha())
+            ):
+                return inp
+
+
+def check_inp_size(inp, mini, maxi):
+    if mini == "i" and not maxi == "i":
+        if len(inp) <= maxi:
+            return True
+    elif maxi == "i" and not mini == "i":
+        if len(inp) >= mini:
+            return True
+    elif mini == "i" and maxi == "i":
+        return True
+    elif not (mini == "i" or maxi == "i"):
+        if mini <= len(inp) <= maxi:
+            return True
+
+
+def let_to_num(miniy, maxiy, minix, maxix):
+    while True:
+        mss = "Field: "
+
+        let, numb = char_split(input_check(mss, "anf", 2, "i"))
+        xw = int(numb) - 1  # z. B. "1" wird zu 0, "2" zu 1
+        yh = 0
+        for i in let:
+            yh = yh * 26 + (ord(i.lower()) - ord("a") + 1)
+        yh = yh - 1
+        if miniy <= yh <= maxiy and minix <= xw <= maxix:
+            return xw, yh
+
+
+def char_split(inp):
+    inp = inp.strip()
+    letters = ""
+    numbers = ""
+    for i in inp:
+        if i.isalpha():
+            letters += i
+        elif i.isdigit():
+            numbers += i
+
+    return letters, numbers
+
+
+def continue_play(mss, width, heigth, field):
+    print(mss)
+    field_print(create_vis_field(HEIGHT10, WIDTH10))
 
 
 def game_loop(field, l):
