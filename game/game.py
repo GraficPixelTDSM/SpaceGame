@@ -10,6 +10,27 @@ LOSS = False
 """We define values for game width, height and number of mines"""
 
 
+def size_question():
+    while True:
+        preset = [[10, 10, 10], [20, 15, 20], [25, 20, 25]]  # w, h, m
+        mss = "[1] 10x10 (10 Minen)\n[2] 20x15 (20 Minen)\n[3] 25x20 (25 Minen)\n[4] Custom\nAwnser: "
+        awns = int(input_check(mss, "n", 1, 1)) - 1
+        if 0 <= awns <= 2:
+            w, h, m = preset[awns][0], preset[awns][1], preset[awns][2]
+            return w, h, m
+        if awns == 3:
+            w = int(input_check("Width: ", "n", 1, "i"))
+            while w < 10:
+                w = int(input_check("Width is too small: ", "n", 1, "i"))
+            h = int(input_check("Heigth: ", "n", 1, "i"))
+            while h < 10:
+                h = int(input_check("Height is too small: ", "n", 1, "i"))
+            m = int(input_check("Mines: ", "n", 1, "i"))
+            while m < 10 or m > 2 * h * w:
+                m = int(input_check("Mines is too small: ", "n", 1, "i"))
+            return w, h, m
+
+
 def generate_field(w, h):
     """generating field, True/False = mine, number = mines around this field, True/False open?"""
     generated = [[[False, 0, False] for i in range(w)] for i in range(h)]
