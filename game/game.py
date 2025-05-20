@@ -198,12 +198,18 @@ def char_split(inp):
 
 def continue_play(mss, width, heigth, field):
     print(mss)
-    field_print(create_vis_field(HEIGHT10, WIDTH10))
+    field_print(create_vis_field(width, heigth, field))
+    cont = input_check("Play again?", "a", 1, 3)
+    while cont not in ("y", "n", "yes", "no"):
+        cont = input_check("Play again?", "a", 1, 3)
+    if cont in ("y", "yes"):
+        loss, play = False, True
+        return loss, play
+    if cont in ("n", "no"):
+        loss, play = True, False
+        return loss, play
 
 
-def game_loop(field, l):
-    """main game-loop"""
-    while l is False:
         zero_check = []
         x, y = input_check("x", WIDTH10), input_check("y", HEIGHT10)
         field[y][x][2] = True
