@@ -210,27 +210,52 @@ def continue_play(mss, width, heigth, field):
         return loss, play
 
 
+def game_loop():
+    play, loss, first_move = True, False, True
+    width, heigth, mines = size_question()
+    field = mine_detection(
+        set_mines(generate_field(width, heigth), mines, width, heigth), width, heigth
+    )
+    field_print(create_vis_field(width, heigth, field))
+    while play:
         zero_check = []
-        x, y = input_check("x", WIDTH10), input_check("y", HEIGHT10)
-        field[y][x][2] = True
+        x, y = let_to_num(0, heigth - 1, 0, width - 1)
+        while field[y][x][0] == True and first_move:
+            field = mine_detection(
+                set_mines(generate_field(width, heigth), mines, width, heigth),
+                width,
+                heigth,
+            )
+        field[y][x][2], first_move = True, False
         # field_print(field)
         if field[y][x][0] is True:
-            l = True
-            return l
+            loss, play = True, False
         if field[y][x][1] == 0 and field[y][x][0] is False:
             zero_check.append([y, x])
         while len(zero_check) > 0:
             zero_check = zero_field(
-                zero_check[0][0], zero_check[0][1], field, zero_check
+                zero_check[0][0], zero_check[0][1], field, zero_check, heigth, width
             )
             zero_check.pop(0)
-        if count_open_fields(field) == (HEIGHT10 * WIDTH10 - MINES10):
-            return l
-        field_print(create_vis_field(HEIGHT10, WIDTH10))
+        if (
+            count_open_fields(field, heigth, width) == (heigth * width - mines)
+            and loss is False
+        ):
+            play = False
+        field_print(create_vis_field(width, heigth, field))
+        if play is False and loss:
+            loss, play = continue_play(
+                "you hit a mine and lose the game", width, heigth, field
+            )
+            return play
+        if play is False and loss is False:
+            loss, play = continue_play(
+                "you don't hit a mine and win the game", width, heigth, field
+            )
+            return play
 
 
-LOSS = game_loop(playfield, LOSS)
-if LOSS is True:
-    print("you hit a mine and lose the game")
-if LOSS is False:
-    print("you don't hit a mine and win the game")
+play = True
+
+while play:
+    play = game_loop()
