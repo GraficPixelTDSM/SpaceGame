@@ -117,19 +117,7 @@ def zero_field(h, w, field, list):
     return list
 
 
-def input_check(var, value):
-    inp = input(f"{var}: ")
-    while True:
-        try:
-            if 0 <= int(inp) < value:
-                return int(inp)
-            else:
-                inp = input(f"{var}: ")
-        except:
-            inp = input(f"{var}: ")
-
-
-def count_open_fields(field):
+def count_open_fields(field, heigth, width):
     x = 0
     for i in range(HEIGHT10):
         for j in range(WIDTH10):
