@@ -26,44 +26,44 @@ def size_question():
             return w, h, m
 
 
-def generate_field(w, h):
+def generate_field(width, heigth):
     """generating field, True/False = mine, number = mines around this field, True/False open?"""
-    generated = [[[False, 0, False] for i in range(w)] for i in range(h)]
+    generated = [[[False, 0, False] for i in range(width)] for i in range(heigth)]
     print("Empty field generated")
     # field_print(generated)
     return generated
 
 
-def set_mines(num, w, h, field):
+def set_mines(field, mines, width, heigth):
     """places mines on the field by changing False to True"""
     check = 0
     mines_list = []
-    for i in range(num):
-        a = randint(0, w - 1)
-        b = randint(0, h - 1)
+    for i in range(mines):
+        a = randint(0, width - 1)
+        b = randint(0, heigth - 1)
         while field[b][a][0] is True:
-            a = randint(0, w - 1)
-            b = randint(0, h - 1)
+            a = randint(0, width - 1)
+            b = randint(0, heigth - 1)
         mines_list.append(f"{b};{a}")
         field[b][a][0] = True
     # print(f"Mine Locations: {mines_list}")
     print("Mined field generated")
     # field_print(field)
-    for j in range(h):
+    for j in range(heigth):
         check = check + int(field[j].count([True, 0, False]))
     print("Minecheck: " + str(check) + " Mines")
     return field
 
 
-def mine_detection(h, w, field):
+def mine_detection(field, width, heigth):
     """Detects the number of mines around each field."""
     checklist = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
-    for i in range(h):
-        for j in range(w):
+    for i in range(heigth):
+        for j in range(width):
             x = 0
             for di, dj in checklist:
                 ni, nj = i + di, j + dj
-                if 0 <= ni < h and 0 <= nj < w:
+                if 0 <= ni < heigth and 0 <= nj < width:
                     if field[ni][nj][0] is True:
                         x += 1
             if field[i][j][0] is False:
@@ -85,7 +85,7 @@ def field_print(inp):
         print(f"{row_label}  " + " ".join(row))
 
 
-def create_vis_field(h, w):
+def create_vis_field(width, heigth, playfield):
     """Changes numbers, mines and covered fields with symbols"""
     field = [[] for i in range(heigth)]
     numbers = ["◻", "1", "2", "3", "4", "5", "6", "7", "8"]
@@ -102,11 +102,11 @@ def create_vis_field(h, w):
     return field
 
 
-def zero_field(h, w, field, list):
+def zero_field(h, w, field, list, heigth, width):
     """open all fields around a 0-field and repeat for new 0-fields"""
     checklist = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
     for i, j in checklist:
-        if 0 <= j + h < HEIGHT10 and 0 <= i + w < WIDTH10:
+        if 0 <= j + h < heigth and 0 <= i + w < width:
             # field_print(field)
             if field[j + h][i + w][2] is False:
                 field[j + h][i + w][2] = True
@@ -119,8 +119,8 @@ def zero_field(h, w, field, list):
 
 def count_open_fields(field, heigth, width):
     x = 0
-    for i in range(HEIGHT10):
-        for j in range(WIDTH10):
+    for i in range(heigth):
+        for j in range(width):
             if field[i][j][2] is True:
                 x += 1
     return x
