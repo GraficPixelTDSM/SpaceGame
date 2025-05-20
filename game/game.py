@@ -2,11 +2,6 @@ from random import randint  # We import randint to generate random numbers
 import string  # Für die Buchstaben a-z
 
 
-MINES10 = 10
-WIDTH10 = 10
-HEIGHT10 = 10
-
-LOSS = False
 """We define values for game width, height and number of mines"""
 
 
