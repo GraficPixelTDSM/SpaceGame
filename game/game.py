@@ -87,10 +87,10 @@ def field_print(inp):
 
 def create_vis_field(h, w):
     """Changes numbers, mines and covered fields with symbols"""
-    field = [[] for i in range(h)]
-    numbers = ["◻", "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧"]
-    for j in range(h):
-        for k in range(w):
+    field = [[] for i in range(heigth)]
+    numbers = ["◻", "1", "2", "3", "4", "5", "6", "7", "8"]
+    for j in range(heigth):
+        for k in range(width):
             if playfield[j][k][2] is False:
                 field[j].append("■")
             if playfield[j][k][2] is True:
